@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        compileOptions {
+            encoding "UTF-8"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.libraryVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "android-support-download-${defaultConfig.versionName}.aar"
+                }
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+
+    // amlzq support library
+    implementation 'com.amlzq.android:log:1.0.4'
+    implementation 'com.amlzq.android:utils:1.0.2'
+}
+
+//apply plugin: 'com.novoda.bintray-release'
+//
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.novoda:bintray-release:0.8.1'
+//    }
+//}
+//
+//// 解决注释里面有中文导致maven错误：编码GBK的不可映射字符
+//tasks.withType(Javadoc) { options.encoding = "UTF-8" }
+//
+//publish {
+//    userOrg = 'amlzq' // 组织用户名
+//    repoName = 'android-support-base' // maven类型仓库名称
+//    groupId = 'com.amlzq.android' //
+//    artifactId = 'download'
+//    publishVersion = android.defaultConfig.versionName
+//    desc = 'android support api download'
+//    website = 'https://github.com/amlzq/android-support-base/tree/android-support-download'
+//    repository = 'https://github.com/amlzq/android-support-base.git'
+//}
