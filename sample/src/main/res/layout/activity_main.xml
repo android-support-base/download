@@ -6,9 +6,32 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ProgressBar
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="always"/>
+        android:gravity="center"
+        android:onClick="onDownloadManager"
+        android:text="android.app.DownloadManager" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onOkDownload"
+        android:text="OkDownload" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onFileDownloader"
+        android:text="android.app.DownloadManager" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onMultiThreadDownload"
+        android:text="android.app.DownloadManager" />
 
 </LinearLayout>
